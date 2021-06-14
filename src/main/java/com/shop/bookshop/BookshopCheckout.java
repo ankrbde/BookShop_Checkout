@@ -1,6 +1,5 @@
 package com.shop.bookshop;
 
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.shop.bookshop.exception.CheckoutException;
