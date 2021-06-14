@@ -32,9 +32,13 @@ public class BookListService {
         URL resource = BookshopCheckout.class.getClassLoader().getResource(path);
         if(resource!=null) {
             list = mapper.readValue(Paths.get(resource.toURI()).toFile(), Book[].class);
-            return Arrays.asList(list);
+            if (Arrays.asList(list)!=null && !Arrays.asList(list).isEmpty()){
+                return Arrays.asList(list);
+            }else{
+                throw new CheckoutException("Book list is empty");
+            }
         }else{
-            throw new CheckoutException("Resource is null or book list is empty");
+            throw new CheckoutException("Resource(Book List) is null");
         }
     }
 }
