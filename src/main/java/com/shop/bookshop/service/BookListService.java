@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.shop.bookshop.BookshopCheckout;
+import com.shop.bookshop.exception.CheckoutException;
 import com.shop.bookshop.model.Book;
 
 import java.io.IOException;
@@ -19,11 +20,11 @@ public class BookListService {
 
     private static  final Logger LOGGER =  Logger.getLogger(BookListService.class.getCanonicalName());
 
-    public List<Book> getBookList(String path, List<Book> books) throws URISyntaxException, IOException{
+    public List<Book> getBookList(String path, List<Book> books) throws URISyntaxException, IOException, CheckoutException {
         return readFromJson(path);
     }
 
-    private List<Book> readFromJson(String path) throws URISyntaxException, IOException {
+    private List<Book> readFromJson(String path) throws URISyntaxException, IOException, CheckoutException {
         ObjectMapper mapper = JsonMapper.builder()
                 .addModule(new JavaTimeModule())
                 .build();
@@ -33,7 +34,7 @@ public class BookListService {
             list = mapper.readValue(Paths.get(resource.toURI()).toFile(), Book[].class);
             return Arrays.asList(list);
         }else{
-            return Collections.emptyList();
+            throw new CheckoutException("Resource is null or book list is empty");
         }
     }
 }

@@ -1,0 +1,17 @@
+[
+  {
+    "title":"A Christmas Carol",
+    "year": 1843,
+    "price": 4.23
+  },
+  {
+    "title":"A Tale of Two Cities",
+    "year": 1859,
+    "price": 6.32
+  },
+  {
+    "title":"Great Expectations",
+    "year": 1861,
+    "price": 13.21
+  }
+]
